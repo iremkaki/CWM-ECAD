@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #3 - Active IoT Devices Monitor
-// Student Name:
-// Date: 
+// Student Name: Irem Kaki
+// Date: 15/06/2021
 //
 // Description: A testbench module to test Ex3 - Active IoT Devices Monitor
 // Guidance: start with simple tests of the module (how should it react to each 
@@ -13,16 +13,23 @@
 module top_tb(
     );
     
-//Todo: Parameters
+    //Todo: Parameters
+    parameter CLK_PERIOD = 10;
 
-//Todo: Regitsers and wires
+    //Todo: Registers and wires
 
-//Todo: Clock generation
+    //Todo: Clock generation
+    initial
+    begin
+       clk = 1'b0;
+       forever
+         #(CLK_PERIOD/2) clk=~clk;
+     end
 
-//Todo: User logic
+    //Todo: User logic
     
-//Todo: Finish test, check for success
+    //Todo: Finish test, check for success
 
-//Todo: Instantiate counter module
+    //Todo: Instantiate counter module
  
 endmodule 

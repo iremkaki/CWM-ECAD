@@ -24,23 +24,21 @@ module monitor (
     input rst, 
     input change, 
     input on_off,
-    output [7:0] counter_out
+    output reg [7:0] counter_out
     );
                     
     //Todo: add registers and wires, if needed
-    reg [7:0] counter;
     
 
     //Todo: add user logic
-    assign counter_out = counter
-    always @(posedge clk) begin
+    always @(posedge clk or posedge rst)
         if (rst) begin
-            counter <= 0;
+            counter_out <= 0;
         end
-        if (change) begin
-            counter <= on_off? counter+1 : counter-1;
-        end
-            
-    end
-  
+        else begin
+            if (change) begin
+                counter_out <= on_off? counter_out + 1 : counter_out - 1;
+            end
+        end    
+    
 endmodule

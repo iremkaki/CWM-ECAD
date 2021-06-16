@@ -50,7 +50,21 @@ module top_tb (
         end
 
         // button pressed tests
-        
+        colour_prev = colour;
+	    button = 1;
+	    forever begin
+            #CLK_PERIOD
+            // check if it goes from 110 back to 001
+            if (colour_prev == 3'b110 && colour != 3'b001) begin
+                $display("Test failed - didn't go from 110 to 001");
+                err = 1;
+            end
+            // check if others work
+            if (colour_prev < 3'b110 && colour != colour_prev + 3'b001) begin
+                $display("Test failed - colour change");
+                err = 1;
+            end
+	    end
     
 
     end

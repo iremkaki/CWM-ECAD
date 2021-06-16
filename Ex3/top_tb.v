@@ -46,7 +46,8 @@ module top_tb(
             $display("Test failed - counter doesn't start from 0");
             err = 1;
         end
-
+        
+        rst = 0;
         //test to check if counter is stable (has the same result)
         counter_test = counter_out;
         #(CLK_PERIOD*2)

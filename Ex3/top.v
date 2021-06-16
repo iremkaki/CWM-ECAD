@@ -31,13 +31,16 @@ module monitor (
     
 
     //Todo: add user logic
-    always @(posedge clk or posedge rst)
+    always @(posedge clk)
         if (rst) begin
-            counter_out <= 0;
+            counter_out <= #1 0;
         end
         else begin
             if (change) begin
-                counter_out <= on_off? counter_out + 1 : counter_out - 1;
+                counter_out <= #1 on_off? counter_out + 1 : counter_out - 1;
+            end
+            else begin
+            counter_out <= #1 counter_out;
             end
         end    
     

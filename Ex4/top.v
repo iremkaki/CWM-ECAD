@@ -19,7 +19,7 @@
 `timescale 1ns / 100ps
 
 module led (
-    // ports
+    // define ports
     input clk, rst, button,
     output reg [2:0] colour
     );

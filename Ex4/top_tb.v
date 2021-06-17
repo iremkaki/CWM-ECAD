@@ -50,9 +50,9 @@ module top_tb (
         end
 
         // button pressed tests
-        colour_prev = colour;
-	    button = 1;
+        button = 1;
 	    forever begin
+	        colour_prev = colour;
             #CLK_PERIOD
             // check if it goes from 110 back to 001
             if (colour_prev == 3'b110 && colour != 3'b001) begin

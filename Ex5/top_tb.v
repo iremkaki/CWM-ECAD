@@ -22,9 +22,10 @@ module top_tb(
     // clock generation
     initial begin
         clk = 1'b0;
-        forever
+        forever begin
             #(CLK_PERIOD/2)
-            clk =~ clk;    
+            clk =~ clk;
+	end    
     end
 
 
@@ -33,25 +34,25 @@ module top_tb(
         err = 0;
         forever begin
             // cannot be cooling and heating at the same time
-            if (cooling == 1 && heating == 1) begin
+            if ((cooling == 1) && (heating == 1)) begin
                 $display("Test failed - illegal state, heating and cooling at once");
                 err = 1;
             end
 
             // check idle state
-            if (temperature > 18 && temperature < 22 && cooling != 0 && heating != 0) begin
+            if ((temperature > 18) && (temperature < 22) && (cooling != 0) && (heating != 0)) begin
                 $display("Test failed - error in idle state");
                 err = 1;
             end 
 
             // check heating state
-            if (temperature <= 18 && cooling != 0 && heating != 1) begin
+            if ((temperature <= 18) && (cooling != 0) && (heating != 1)) begin
                 $display("Test failed - error in heating state");
                 err = 1;
             end
 
             // check cooling state
-            if (temperature >= 22 && cooling != 1 && heating != 0) begin
+            if ((temperature >= 22) && (cooling != 1) && (heating != 0)) begin
                 $display("Test failed - error in cooling state");
                 err = 1;
             end
@@ -95,11 +96,10 @@ module top_tb(
 
     // instantiate module
     ac top(
-        .temperature (temperature),
         .clk (clk),
+        .temperature (temperature),
         .heating (heating),
         .cooling (cooling)
         );
 
 endmodule
- 

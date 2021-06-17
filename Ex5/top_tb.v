@@ -62,22 +62,7 @@ module top_tb(
 
     // change the temperature to check
     initial begin
-        temperature = 16;
-        #(CLK_PERIOD*3)
-        temperature = 20;
-        #(CLK_PERIOD*3)
-        temperature = 24;
-        #(CLK_PERIOD*3)
-
-        // check edge cases
-        temperature = 18;
-        #(CLK_PERIOD*3)
-        temperature = 22;
-        #(CLK_PERIOD*3)
-
-        // check rising temp
-        temperature = 16;
-        #(CLK_PERIOD*3)
+    temperature = 20;
         forever begin
             #(CLK_PERIOD*3)
             temperature = temperature + 1;

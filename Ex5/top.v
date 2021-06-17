@@ -22,8 +22,8 @@ module ac (
     output cooling
     );
 
-    //define the state - 00 idle, 01 heating ON, 10 cooling ON - start from idle
-    reg [1:0] state = 2'b00;
+    //define the state - 00 idle, 01 heating ON, 10 cooling ON
+    reg [1:0] state;
     assign heating = state[0];
     assign cooling = state[1];
 

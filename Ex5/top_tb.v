@@ -25,14 +25,16 @@ module top_tb(
         forever begin
             #(CLK_PERIOD/2)
             clk =~ clk;
-	end    
+	    end    
     end
 
 
     // set regular tests
     initial begin
         err = 0;
+        temperature = 16;
         forever begin
+            #CLK_PERIOD
             // cannot be cooling and heating at the same time
             if ((cooling == 1) && (heating == 1)) begin
                 $display("Test failed - illegal state, heating and cooling at once");
@@ -56,23 +58,15 @@ module top_tb(
                 $display("Test failed - error in cooling state");
                 err = 1;
             end
-
-        end
-    end
-
-    // change the temperature to check
-    initial begin
-    temperature = 20;
-        forever begin
-            #(CLK_PERIOD*3)
+            #(CLK_PERIOD*2)
             temperature = temperature + 1;
-        end        
+        end
     end
 
 
     // finish test, check for success
     initial begin
-        #(CLK_PERIOD*50)
+        #(CLK_PERIOD*100)
         if (err == 0) begin
             $display("Test passed :)");   
         end

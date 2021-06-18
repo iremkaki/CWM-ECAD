@@ -22,14 +22,20 @@ module ac (
     output cooling
     );
 
-    //define the state - 00 idle, 01 heating ON, 10 cooling ON
-    reg [1:0] state;
+    //define the state - 00 idle, 01 heating ON, 10 cooling ON, start at idle
+    reg [1:0] state = 2'b00;
     assign heating = state[0];
     assign cooling = state[1];
 
     //define all possible moves between states
     always @(posedge clk) begin
         case(state)
+            //state is illegal
+            2'b11: begin
+                //set state to idle
+                state = 2'b00;
+            end
+
             //state is idle
             2'b00: begin
                 //if <= 18, move to heating

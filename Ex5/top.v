@@ -45,7 +45,7 @@ module ac (
                     state = 2'b01;
                 end
                 //if >= 22, move to cooling
-                if (temperature >= 22) begin
+                else if (temperature >= 22) begin
                     //heating = 0;
                     //cooling = 1;
                     state = 2'b10;                

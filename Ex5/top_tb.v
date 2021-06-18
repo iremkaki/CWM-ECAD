@@ -58,7 +58,7 @@ module top_tb(
                 $display("Test failed - error in cooling state");
                 err = 1;
             end
-            #(CLK_PERIOD*2)
+            #(CLK_PERIOD*3)
             temperature = temperature + 1;
         end
     end

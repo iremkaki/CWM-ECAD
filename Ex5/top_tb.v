@@ -66,7 +66,7 @@ module top_tb(
 
     // finish test, check for success
     initial begin
-        #(CLK_PERIOD*100)
+        #(CLK_PERIOD*50)
         if (err == 0) begin
             $display("Test passed :)");   
         end

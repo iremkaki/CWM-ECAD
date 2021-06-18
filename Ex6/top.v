@@ -19,7 +19,7 @@ module rgb (
     input clk,
     input enable,
     input [2:0] colour,
-    output rgb [23:0]
+    output [23:0] rgb
     );
 
     blk_mem_gen_0 your_instance_name (
